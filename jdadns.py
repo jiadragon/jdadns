@@ -79,8 +79,8 @@ class MainPage(webapp2.RequestHandler):
  
      else: 
           self.response.out.write('?type=\n')
-          self.response.out.write('add')
-          self.response.out.write('remove')
+          self.response.out.write('add\n')
+          self.response.out.write('remove\n')
           self.response.out.write('update')
           self.response.out.write('retrieve')
           self.response.out.write('list')
