@@ -102,6 +102,23 @@ class Main_DNS(webapp2.RequestHandler):
         newwpass = record.writepass
         newrpass = record.readpass
         newhidden = record.hidden
+        if param3 == '':
+          param3 = record.url            
+        if self.request.get('wpass') != '':
+          if self.request.get('wpass') == 'null':
+            newwpass = ''
+          else:
+            newwpass = self.request.get('wpass')
+        if self.request.get('rpass') != "":
+          if self.request.get('rpass') == 'null':
+            newrpass = ''
+          else:
+            newrpass = self.request.get('rpass')
+        if self.request.get('hidden') != '':
+          if self.request.get('hidden') == '1':
+            newhidden = True
+          elif self.request.get('hidden') == '0':
+            newhidden = False
           
       self.response.out.write('Update')
       
