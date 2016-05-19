@@ -35,6 +35,27 @@ class Main_DNS(webapp2.RequestHandler):
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
+        if newrec is None:  # the service doesn't exist, so add it.
+          if param2=="" or param3=="" :
+            self.response.out.write('Error2')
+          else:
+            if param6 == "1":
+              param6 = True
+            else:
+              param6 = False
+ 
+            newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param5,hidden=param6)
+            newrec.put()
+            logging.info('Added Service: '+param2)
+            self.response.out.write('Added')
+        else:
+                    logging.info('Service: '+param2+' already found.')
+                    self.response.out.write('Found')  # service already exists so announce that and do nothing
+      else:
+                self.response.set_status(401)
+                logging.info('Rejected Service: '+param2+' Invalid admin password')
+                self.response.out.write('Rejected')
+ 
       
     elif self.request.get('type')=='list': # List the existing services
       records = Service.all()
