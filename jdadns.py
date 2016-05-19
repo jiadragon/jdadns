@@ -71,10 +71,6 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Rejected Service: '+param2+' remove. Not Found')
         self.response.out.write('Rejected')
         
-    elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
-      param2=self.request.get('name') #the Name the service will be known by         
-    	param3=self.request.get('url') # the URL for the web service
-      param4=self.request.get('pass') # the password for modifying the entry
          
     elif self.request.get('type')=='retrieve': # get the current URL for a given service
       param2=self.request.get('name')     # the name the service is known by
