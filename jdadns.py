@@ -70,6 +70,7 @@ class Main_DNS(webapp2.RequestHandler):
         self.response.set_status(401)
         logging.info('Rejected Service: '+param2+' remove. Not Found')
         self.response.out.write('Rejected')
+        
    	elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
       self.response.out.write('To do update')
       
