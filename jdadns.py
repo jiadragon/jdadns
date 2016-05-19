@@ -161,7 +161,7 @@ class Main_DNS(webapp2.RequestHandler):
  
       elif self.request.get('type')=='list': # List the existing services
  
-            records = Service.all()
+        records = Service.all()
  
             if records is None:
                 logging.info('Service List: Empty')
