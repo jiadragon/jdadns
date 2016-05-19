@@ -100,7 +100,7 @@ class Redirector(webapp2.RequestHandler):
       if self.request.query_string != '' :
         return self.redirect(urllib.unquote(record.url)+'?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
       else:
-        self.response.out.write() # Service wasn't found return self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL
+        self.response.out.write(urllib.unquote(record.url)) # Service wasn't found return self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL
       
 app = webapp2.WSGIApplication( [('/', MainPage),
                                 ('/.*',Redirector)],
