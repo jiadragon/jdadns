@@ -35,7 +35,7 @@ class Main_DNS(webapp2.RequestHandler):
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
-      elif self.request.get('type')=='list': # List the existing services
+    elif self.request.get('type')=='list': # List the existing services
  
         records = Service.all()
  
