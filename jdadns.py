@@ -14,7 +14,7 @@ class Main_DNS(webapp2.RequestHandler):
  
   def get(self):
  
-    #self.response.out.write('Test')
+    self.response.out.write('Test')
     obj_name=self.request.headers.get('X-SecondLife-Object-Name')
     region=self.request.headers.get('X-SecondLife-Region')
     local_pos=self.request.headers.get('X-SecondLife-Local-Position')
@@ -85,7 +85,7 @@ class Main_DNS(webapp2.RequestHandler):
  
       if record is None:
         if param3 == "":
-          logging.info('Updating Service: '+param2+' failed. Blank URL')
+          #logging.info('Updating Service: '+param2+' failed. Blank URL')
           self.response.out.write('Error3')
         else:
           newhidden = False
@@ -97,7 +97,7 @@ class Main_DNS(webapp2.RequestHandler):
           if self.request.get('rpass') != "":
             newrec.readpass=self.request.get('rpass')
           newrec.put()
-          logging.info('Added Service: '+param2+' (update add)')
+          #logging.info('Added Service: '+param2+' (update add)')
           self.response.out.write('Added')
       elif record.writepass == "" or record.writepass == param4 or (admin_password != 'null' and admin_password == self.request.get('admin')):
         # record already exists, update it                    
@@ -130,11 +130,11 @@ class Main_DNS(webapp2.RequestHandler):
         record.hidden=newhidden
  
         record.put()
-        logging.info('Updated Service: '+param2)
+        #logging.info('Updated Service: '+param2)
         self.response.out.write('Updated')
       else:
         self.response.set_status(401)
-        logging.info('Update Service: '+param2+' failed. Invalid Password.')
+        #logging.info('Update Service: '+param2+' failed. Invalid Password.')
         self.response.out.write('Rejected')
         
     elif self.request.get('type')=='retrieve': # get the current URL for a given service
