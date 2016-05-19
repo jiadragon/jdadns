@@ -15,6 +15,7 @@ class Main_DNS(webapp2.RequestHandler):
   def get(self):
  
     self.response.out.write('None') # Service wasn't found
+
   def post(self):
    self.get()
  
