@@ -67,7 +67,7 @@ class Main_DNS(webapp2.RequestHandler):
       elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
         record.delete()  # remove
         logging.info('Removed Service: '+param2)
-                self.response.out.write('Removed')
+      self.response.out.write('Removed')
             else:
                 self.response.set_status(401)
                 logging.info('Rejected Service: '+param2+' remove. Not Found')
