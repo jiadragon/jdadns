@@ -75,7 +75,7 @@ class Main_DNS(webapp2.RequestHandler):
       param2 = self.request.get('name')     # the name the service is known by
       param3 = self.request.get('url')     # the URL for the web service
       param4 = self.request.get('pass')     # the password for modifying the entry
-      if param2 == "":
+      if param2 == :
         logging.info('Could not Update Blank Service')
         self.response.out.write('Error2')
         return
