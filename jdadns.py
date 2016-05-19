@@ -26,8 +26,8 @@ class Main_DNS(webapp2.RequestHandler):
     admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
     # Putting "null" in password disables this feature.
  
-    if self.request.get('type') =='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
-      param2=self.request.get('name')   # the Name the service will be known by
+    if self.request.get('type') == 'add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
+      param2 = self.request.get('name')   # the Name the service will be known by
       param3=self.request.get('url')    # the URL for the web service
       param4=self.request.get('wpass')  # the password for modifying the entry
       param5=self.request.get('rpass')  # the password for reading the entry
