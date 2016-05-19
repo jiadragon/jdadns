@@ -100,29 +100,28 @@ class Main_DNS(webapp2.RequestHandler):
           logging.info('Added Service: '+param2+' (update add)')
           self.response.out.write('Added')
         elif record.writepass == "" or record.writepass == param4 or (admin_password != 'null' and admin_password == self.request.get('admin')):
- 
-                # record already exists, update it                    
-                newwpass = record.writepass
-                newrpass = record.readpass
-                newhidden = record.hidden
- 
-                if param3 == "":
-                    param3 = record.url            
-                if self.request.get('wpass') != "":
-                    if self.request.get('wpass') == "null":
-                        newwpass = ""
-                    else:
-                        newwpass = self.request.get('wpass')
-                if self.request.get('rpass') != "":
-                    if self.request.get('rpass') == "null":
-                        newrpass = ""
-                    else:
-                        newrpass = self.request.get('rpass')
-                if self.request.get('hidden') != "":
-                    if self.request.get('hidden') == "1":
-                        newhidden = True
-                    elif self.request.get('hidden') == "0":
-                        newhidden = False
+          # record already exists, update it                    
+          newwpass = record.writepass
+          newrpass = record.readpass
+          newhidden = record.hidden
+
+          if param3 == "":
+            param3 = record.url            
+          if self.request.get('wpass') != "":
+            if self.request.get('wpass') == "null":
+              newwpass = ""
+            else:
+              newwpass = self.request.get('wpass')
+          if self.request.get('rpass') != "":
+            if self.request.get('rpass') == "null":
+              newrpass = ""
+            else:
+              newrpass = self.request.get('rpass')
+          if self.request.get('hidden') != "":
+            if self.request.get('hidden') == "1":
+              newhidden = True
+            elif self.request.get('hidden') == "0":
+              newhidden = False
  
                 # add record, either replacing the deleted one, or adding a new one if it never existed
                 record.url=param3
