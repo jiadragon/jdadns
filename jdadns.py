@@ -82,8 +82,8 @@ class MainPage(webapp2.RequestHandler):
           self.response.out.write('\tadd\n')
           self.response.out.write('\tremove\n')
           self.response.out.write('\tupdate\n')
-          self.response.out.write('retrieve\n')
-          self.response.out.write('list\n')
+          self.response.out.write('\tretrieve\n')
+          self.response.out.write('\tlist\n')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
