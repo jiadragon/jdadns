@@ -58,32 +58,32 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Rejected Service: '+param2+' Invalid admin password')
         self.response.out.write('Rejected')
  
-  elif self.request.get('type')=='remove': #removing a service
-  	param2=self.request.get('name')     # the name the service is known by
+    elif self.request.get('type')=='remove': #removing a service
+  	  param2=self.request.get('name')     # the name the service is known by
  
-    record = Service.get_by_key_name(param2)
+     record = Service.get_by_key_name(param2)
  
-    if record is None:
+     if record is None:
       self.response.set_status(200)
       self.response.out.write('None') # Service wasn't found
-    elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
+     elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
       record.delete()  # remove
       logging.info('Removed Service: '+param2)
       self.response.out.write('Removed')
-    else:
+     else:
       self.response.set_status(401)
       logging.info('Rejected Service: '+param2+' remove. Not Found')
       self.response.out.write('Rejected')
  
-  elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
-    param2=self.request.get('name') #the Name the service will be known by         
-    param3=self.request.get('url') # the URL for the web service
-    param4=self.request.get('pass') # the password for modifying the entry
+    elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
+     param2=self.request.get('name') #the Name the service will be known by         
+     param3=self.request.get('url') # the URL for the web service
+     param4=self.request.get('pass') # the password for modifying the entry
  
-    if param2=="" :
-    logging.info('Could not Update Blank Service')
-    self.response.out.write('Error2')
-    return
+     if param2=="" :
+      logging.info('Could not Update Blank Service')
+      self.response.out.write('Error2')
+      return
  
     record = Service.get_by_key_name(param2)
  
@@ -91,9 +91,9 @@ class Main_DNS(webapp2.RequestHandler):
     if param3 == "":
     logging.info('Updating Service: '+param2+' failed. Blank URL')
     self.response.out.write('Error3')
-  else:
-    newhidden = False
-    if self.request.get('hidden') == '1':
+    else:
+     newhidden = False
+     if self.request.get('hidden') == '1':
       newhidden = True
       newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
       if self.request.get('wpass') != "":
