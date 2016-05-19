@@ -113,3 +113,4 @@ class Redirector(webapp2.RequestHandler):
 app = webapp2.WSGIApplication( [('/', MainPage),
                                 ('/.*',Redirector)],
                                 debug=True)
+</python>
