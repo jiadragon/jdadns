@@ -80,6 +80,8 @@ class MainPage(webapp2.RequestHandler):
      else: 
           self.response.out.write('add')
           self.response.out.write('remove')
+          self.response.out.write('remove')
+          self.response.out.write('remove')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
