@@ -86,7 +86,7 @@ class Main_DNS(webapp2.RequestHandler):
           logging.info('Updating Service: '+param2+' failed. Blank URL')
           self.response.out.write('Error3')
         else:
-                    newhidden = False
+          newhidden = False
                     if self.request.get('hidden') == '1':
                         newhidden = True
                     newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
