@@ -56,6 +56,22 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Rejected Service: '+param2+' Invalid admin password')
         self.response.out.write('Rejected')
  
+        elif self.request.get('type')=='remove': #removing a service
+            param2=self.request.get('name')     # the name the service is known by
+ 
+            record = Service.get_by_key_name(param2)
+ 
+            if record is None:
+                self.response.set_status(200)
+                self.response.out.write('None') # Service wasn't found
+            elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
+                record.delete()  # remove
+                logging.info('Removed Service: '+param2)
+                self.response.out.write('Removed')
+            else:
+                self.response.set_status(401)
+                logging.info('Rejected Service: '+param2+' remove. Not Found')
+                self.response.out.write('Rejected')
       
     elif self.request.get('type')=='list': # List the existing services
       records = Service.all()
