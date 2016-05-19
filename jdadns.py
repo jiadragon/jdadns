@@ -23,7 +23,6 @@ class Main_DNS(webapp2.RequestHandler):
 		#logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
 		#logging.info('POST Body was: '+self.request.body)
  
-
   def post(self):
    self.get()
  
