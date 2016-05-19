@@ -30,8 +30,8 @@ class Main_DNS(webapp2.RequestHandler):
       param2 = self.request.get('name')   # the Name the service will be known by
       param3 = self.request.get('url')    # the URL for the web service
       param4 = self.request.get('wpass')  # the password for modifying the entry
-      param5 =self.request.get('rpass')  # the password for reading the entry
-      param6=self.request.get('hidden') # enables hiding the entry from listing
+      param5 = self.request.get('rpass')  # the password for reading the entry
+      param6 = self.request.get('hidden') # enables hiding the entry from listing
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
