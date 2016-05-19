@@ -1,4 +1,3 @@
-<python>
 import urllib
 import webapp2
 from google.appengine.ext import db
@@ -113,4 +112,3 @@ class Redirector(webapp2.RequestHandler):
 app = webapp2.WSGIApplication( [('/', MainPage),
                                 ('/.*',Redirector)],
                                 debug=True)
-</python>
