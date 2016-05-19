@@ -49,7 +49,7 @@ class Main_DNS(webapp2.RequestHandler):
             logging.info('Added Service: '+param2)
             self.response.out.write('Added')
         else:
-                    logging.info('Service: '+param2+' already found.')
+          logging.info('Service: '+param2+' already found.')
                     self.response.out.write('Found')  # service already exists so announce that and do nothing
       else:
         self.response.set_status(401)
