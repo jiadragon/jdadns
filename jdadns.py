@@ -98,9 +98,9 @@ class Redirector(webapp2.RequestHandler):
       record=q.get()  #get the URL we stored previously
 			
       if self.request.query_string != '' :
-        self.redirect(urllib.unquote(record.url)+'?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
+        return self.redirect(urllib.unquote(record.url)+'?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
       else:
-        self.response.out.write(urllib.unquote(record.url)) #self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL
+        return self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL
       
 app = webapp2.WSGIApplication( [('/', MainPage),
                                 ('/.*',Redirector)],
