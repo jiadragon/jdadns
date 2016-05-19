@@ -58,9 +58,7 @@ class Main_DNS(webapp2.RequestHandler):
  
     elif self.request.get('type')=='remove': #removing a service
       param2=self.request.get('name')     # the name the service is known by
- 
       record = Service.get_by_key_name(param2)
-
       if record is None:
         self.response.set_status(200)
         self.response.out.write('None') # Service wasn't found
