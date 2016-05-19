@@ -36,7 +36,7 @@ class Main_DNS(webapp2.RequestHandler):
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
         if newrec is None:  # the service doesn't exist, so add it.
-          if param2=="" or param3=="" :
+          if param2 =="" or param3=="" :
             self.response.out.write('Error2')
           else:
             if param6 == "1":
