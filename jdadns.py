@@ -84,7 +84,7 @@ class Main_DNS(webapp2.RequestHandler):
       if record is None:
         if param3 == "":
           logging.info('Updating Service: '+param2+' failed. Blank URL')
-                    self.response.out.write('Error3')
+          self.response.out.write('Error3')
       self.response.out.write('Update')
       
     elif self.request.get('type') == 'retrieve': # get the current URL for a given service
