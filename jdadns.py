@@ -15,7 +15,7 @@ class Main_DNS(webapp2.RequestHandler):
   def get(self):
  
     self.response.out.write('Test')
-    obj_name=self.request.headers.get('X-SecondLife-Object-Name')
+    obj_name =self.request.headers.get('X-SecondLife-Object-Name')
     region=self.request.headers.get('X-SecondLife-Region')
     local_pos=self.request.headers.get('X-SecondLife-Local-Position')
     owner_name=self.request.headers.get('X-SecondLife-Owner-Name')
