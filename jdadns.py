@@ -123,7 +123,7 @@ class Main_DNS(webapp2.RequestHandler):
             elif self.request.get('hidden') == "0":
               newhidden = False
  
-                # add record, either replacing the deleted one, or adding a new one if it never existed
+          # add record, either replacing the deleted one, or adding a new one if it never existed
                 record.url=param3
                 record.writepass=newwpass
                 record.readpass=newrpass
