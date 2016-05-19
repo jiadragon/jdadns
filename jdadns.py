@@ -163,7 +163,7 @@ class Main_DNS(webapp2.RequestHandler):
  
         records = Service.all()
  
-            if records is None:
+        if records is None:
                 logging.info('Service List: Empty')
                 self.response.out.write('Empty') # Services weren't found
             else:
