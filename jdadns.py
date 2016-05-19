@@ -80,7 +80,7 @@ class Main_DNS(webapp2.RequestHandler):
         self.response.out.write('None') # Service wasn't found
       elif record.readpass == "" or record.readpass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
         logging.info('Retrieved Service: '+param2)
-                self.response.out.write(record.url) #print the URL
+        self.response.out.write(record.url) #print the URL
             else:
                 self.response.set_status(401)
                 logging.info('Retrieve Service: '+param2+' failed. Invalid Password.')
