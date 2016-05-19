@@ -175,7 +175,7 @@ class Main_DNS(webapp2.RequestHandler):
               if result.hidden == False or got_admin == True:
                 self.response.out.write(result.name+',')
             		logging.info('Service List: Success')
-              	self.response.out.write('END')  # Cap the list             
+              self.response.out.write('END')  # Cap the list             
  
       else:
             logging.info('Invalid Service command type: '+self.request.get('type'))
