@@ -169,9 +169,9 @@ class Main_DNS(webapp2.RequestHandler):
         else:
           got_admin = False
         	if admin_password != 'null' and admin_password == self.request.get('admin'):
-              got_admin = True;            
+            got_admin = True;            
  
-                for result in records: 
+            for result in records: 
                     if result.hidden == False or got_admin == True:
                         self.response.out.write(result.name+',')
                 logging.info('Service List: Success')
