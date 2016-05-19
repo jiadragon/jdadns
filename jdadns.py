@@ -22,6 +22,7 @@ class Main_DNS(webapp2.RequestHandler):
     owner_key=self.request.headers.get('X-SecondLife-Owner-Key')
 		#logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
 		#logging.info('POST Body was: '+self.request.body)
+
     admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
     # Putting "null" in password disables this feature.
  
