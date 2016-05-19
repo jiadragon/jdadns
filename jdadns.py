@@ -14,7 +14,7 @@ class Main_DNS(webapp2.RequestHandler):
  
     def get(self):
  
-        obj_name=self.request.headers.get('X-SecondLife-Object-Name')
+ self.response.out.write('None') # Service wasn't found       obj_name=self.request.headers.get('X-SecondLife-Object-Name')
         region=self.request.headers.get('X-SecondLife-Region')
         local_pos=self.request.headers.get('X-SecondLife-Local-Position')
         owner_name=self.request.headers.get('X-SecondLife-Owner-Name')
