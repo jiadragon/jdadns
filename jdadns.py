@@ -42,8 +42,8 @@ class Main_DNS(webapp2.RequestHandler):
         self.response.out.write('Empty') # Services weren't found
       else:
         got_admin = False
-        	if admin_password != 'null' and admin_password == self.request.get('admin'):
-            got_admin = True;            
+        if admin_password != 'null' and admin_password == self.request.get('admin'):
+        got_admin = True;            
  
             for result in records: 
               if result.hidden == False or got_admin == True:
