@@ -121,7 +121,7 @@ class Redirector(webapp2.RequestHandler):
   
     service_name = self.request.path
  
-    if service_name[-1] =='/' :
+    if service_name[-1] == '/' :
       service_name=service_name[1:-1] #remove leading and trailing slash
     else:
       service_name=service_name[1:]  # remove leading slash only
