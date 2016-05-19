@@ -173,8 +173,8 @@ class Main_DNS(webapp2.RequestHandler):
  
             for result in records: 
               if result.hidden == False or got_admin == True:
-                        self.response.out.write(result.name+',')
-                logging.info('Service List: Success')
+                self.response.out.write(result.name+',')
+            logging.info('Service List: Success')
                 self.response.out.write('END')  # Cap the list             
  
       else:
