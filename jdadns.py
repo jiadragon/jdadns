@@ -78,7 +78,7 @@ class MainPage(webapp2.RequestHandler):
               self.response.out.write('END')  # Cap the list             
  
      else: 
-          self.response.out.write('Error')
+          self.response.out.write('add')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
