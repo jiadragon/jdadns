@@ -177,7 +177,7 @@ class Main_DNS(webapp2.RequestHandler):
                 logging.info('Service List: Success')
                 self.response.out.write('END')  # Cap the list             
  
-        else:
+      else:
             logging.info('Invalid Service command type: '+self.request.get('type'))
             self.response.out.write('Error')
     def post(self):
