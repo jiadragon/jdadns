@@ -117,8 +117,8 @@ class Main_DNS(webapp2.RequestHandler):
         if self.request.get('hidden') != "":
           if self.request.get('hidden') == "1":
             newhidden = True
-            elif self.request.get('hidden') == "0":
-                        newhidden = False
+          elif self.request.get('hidden') == "0":
+                  newhidden = False
           
       self.response.out.write('Update')
       
