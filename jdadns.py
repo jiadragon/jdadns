@@ -78,12 +78,12 @@ class MainPage(webapp2.RequestHandler):
               self.response.out.write('END')  # Cap the list             
  
      else: 
-          self.response.out.write('?type=')
-          self.response.out.write('add')
-          self.response.out.write('remove')
-          self.response.out.write('update')
-          self.response.out.write('retrieve')
-          self.response.out.write('list')
+          self.response.out.write('?type=\n')
+          self.response.out.write('\tadd\n')
+          self.response.out.write('\tremove\n')
+          self.response.out.write('\tupdate\n')
+          self.response.out.write('\tretrieve\n')
+          self.response.out.write('\tlist\n')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
