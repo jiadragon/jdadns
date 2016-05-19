@@ -82,7 +82,7 @@ class MainPage(webapp2.RequestHandler):
           self.response.out.write('remove')
           self.response.out.write('update')
           self.response.out.write('retrieve')
-          self.response.out.write('retrieve')
+          self.response.out.write('list')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
