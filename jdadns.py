@@ -74,8 +74,8 @@ class Main_DNS(webapp2.RequestHandler):
     elif self.request.get('type')=='update': # get the current URL for a given service
       self.response.out.write('Update')
 			param2=self.request.get('name') #the Name the service will be known by         
-		param3=self.request.get('url') # the URL for the web service
-		param4=self.request.get('pass') # the password for modifying the entry
+			param3=self.request.get('url') # the URL for the web service
+			param4=self.request.get('pass') # the password for modifying the entry
       
     elif self.request.get('type')=='retrieve': # get the current URL for a given service
       param2=self.request.get('name')     # the name the service is known by
