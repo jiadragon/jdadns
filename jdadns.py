@@ -119,7 +119,8 @@ class Main_DNS(webapp2.RequestHandler):
             newhidden = True
           elif self.request.get('hidden') == '0':
             newhidden = False
-          
+
+            
       self.response.out.write('Update')
       
     elif self.request.get('type') == 'retrieve': # get the current URL for a given service
