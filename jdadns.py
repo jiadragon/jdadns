@@ -12,9 +12,9 @@ class Service(db.Model):
  
 class Main_DNS(webapp2.RequestHandler):
  
-	def get(self):
+  def get(self):
  
-  	self.response.out.write('None') # Service wasn't found
+    self.response.out.write('None') # Service wasn't found
     obj_name=self.request.headers.get('X-SecondLife-Object-Name')
     region=self.request.headers.get('X-SecondLife-Region')
     local_pos=self.request.headers.get('X-SecondLife-Local-Position')
