@@ -40,8 +40,8 @@ class Main_DNS(webapp2.RequestHandler):
       if records is None:
         logging.info('Service List: Empty')
         self.response.out.write('Empty') # Services weren't found
-        else:
-          got_admin = False
+      else:
+        got_admin = False
         	if admin_password != 'null' and admin_password == self.request.get('admin'):
             got_admin = True;            
  
