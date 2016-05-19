@@ -72,9 +72,9 @@ class Main_DNS(webapp2.RequestHandler):
         self.response.out.write('Rejected')
 
     elif self.request.get('type')=='update': #removing a service
-      param2 =self.request.get('name')     # the name the service is known by
-      param3=self.request.get('url')     # the URL for the web service
-      param4=self.request.get('pass')     # the password for modifying the entry
+      param2 = self.request.get('name')     # the name the service is known by
+      param3 = self.request.get('url')     # the URL for the web service
+      param4 = self.request.get('pass')     # the password for modifying the entry
       if param2=="":
         logging.info('Could not Update Blank Service')
         self.response.out.write('Error2')
