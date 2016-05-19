@@ -119,9 +119,9 @@ class Main_DNS(webapp2.RequestHandler):
             newrpass = self.request.get('rpass')
         if self.request.get('hidden') != "":
           if self.request.get('hidden') == "1":
-              newhidden = True
-            elif self.request.get('hidden') == "0":
-              newhidden = False
+            newhidden = True
+          elif self.request.get('hidden') == "0":
+            newhidden = False
  
           # add record, either replacing the deleted one, or adding a new one if it never existed
           record.url=param3
