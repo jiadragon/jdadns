@@ -96,7 +96,7 @@ class Redirector(webapp2.RequestHandler):
       self.response.out.write('None') # Service wasn't found
     else:
       record=q.get()  #get the URL we stored previously
-			self.response.out.write(rec)
+			self.response.out.write(record)
       if self.request.query_string != '' :
         self.redirect(urllib.unquote(record.url)+'?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
       else:        
