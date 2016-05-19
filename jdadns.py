@@ -127,7 +127,7 @@ class Redirector(webapp2.RequestHandler):
       service_name=service_name[1:]  # remove leading slash only
  
     #un-escape just in case you're Kinki :p
-    service_name=urllib.unquote(service_name)
+    service_name = urllib.unquote(service_name)
     logging.debug('Looking up '+service_name+' (DNS)');
  
     record = Service.get_by_key_name(str(service_name))
