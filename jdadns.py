@@ -78,8 +78,8 @@ class Main_DNS(webapp2.RequestHandler):
 
       if param2=="" :
         logging.info('Could not Update Blank Service')
-          self.response.out.write('Error2')
-                return
+        self.response.out.write('Error2')
+        return
  
       record = Service.get_by_key_name(param2)
  
