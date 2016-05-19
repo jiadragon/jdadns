@@ -85,6 +85,18 @@ class Main_DNS(webapp2.RequestHandler):
         if param3 == '':
           logging.info('Updating Service: '+param2+' failed. Blank URL')
           self.response.out.write('Error3')
+        else:
+          newhidden = False
+          if self.request.get('hidden') == '1':
+            newhidden = True
+          newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
+          if self.request.get('wpass') != "":
+            newrec.writepass=self.request.get('wpass')
+          if self.request.get('rpass') != "":
+            newrec.readpass=self.request.get('rpass')
+          newrec.put()
+          logging.info('Added Service: '+param2+' (update add)')
+          self.response.out.write('Added')
           
       self.response.out.write('Update')
       
