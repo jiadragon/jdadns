@@ -19,14 +19,14 @@ class Main_DNS(webapp2.RequestHandler):
     region = self.request.headers.get('X-SecondLife-Region')
     local_pos = self.request.headers.get('X-SecondLife-Local-Position')
     owner_name = self.request.headers.get('X-SecondLife-Owner-Name')
-    owner_key =self.request.headers.get('X-SecondLife-Owner-Key')
+    owner_key = self.request.headers.get('X-SecondLife-Owner-Key')
 		#logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
 		#logging.info('POST Body was: '+self.request.body)
 
     admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
     # Putting "null" in password disables this feature.
  
-    if self.request.get('type')=='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
+    if self.request.get('type') =='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
       param2=self.request.get('name')   # the Name the service will be known by
       param3=self.request.get('url')    # the URL for the web service
       param4=self.request.get('wpass')  # the password for modifying the entry
