@@ -96,7 +96,7 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Retrieve Service: '+param2+' failed. Invalid Password.')
         self.response.out.write("Rejected")
       
-    elif self.request.get('type')=='list': # List the existing services
+    elif self.request.get('type') =='list': # List the existing services
       records = Service.all()
       if records is None:
         #logging.info('Service List: Empty')
