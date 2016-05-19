@@ -88,7 +88,7 @@ class Main_DNS(webapp2.RequestHandler):
         else:
           newhidden = False
           if self.request.get('hidden') == '1':
-                        newhidden = True
+              newhidden = True
                     newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
                     if self.request.get('wpass') != "":
                         newrec.writepass=self.request.get('wpass')
