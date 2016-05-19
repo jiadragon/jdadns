@@ -71,7 +71,7 @@ class Main_DNS(webapp2.RequestHandler):
       else:
         self.response.set_status(401)
         logging.info('Rejected Service: '+param2+' remove. Not Found')
-          self.response.out.write('Rejected')
+        self.response.out.write('Rejected')
       
     elif self.request.get('type')=='list': # List the existing services
       records = Service.all()
