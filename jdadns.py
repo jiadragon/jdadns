@@ -118,8 +118,8 @@ class Redirector(webapp2.RequestHandler):
   def get(self):
  
     import urllib
- 
-    service_name =self.request.path
+  
+    service_name = self.request.path
  
     if service_name[-1]=='/' :
       service_name=service_name[1:-1] #remove leading and trailing slash
