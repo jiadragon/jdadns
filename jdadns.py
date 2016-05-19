@@ -120,7 +120,7 @@ class Main_DNS(webapp2.RequestHandler):
           if self.request.get('hidden') != "":
             if self.request.get('hidden') == "1":
               newhidden = True
-                    elif self.request.get('hidden') == "0":
+            elif self.request.get('hidden') == "0":
                         newhidden = False
  
                 # add record, either replacing the deleted one, or adding a new one if it never existed
