@@ -115,8 +115,8 @@ class Main_DNS(webapp2.RequestHandler):
         if self.request.get('rpass') != "":
           if self.request.get('rpass') == "null":
             newrpass = ""
-            else:
-              newrpass = self.request.get('rpass')
+          else:
+            newrpass = self.request.get('rpass')
           if self.request.get('hidden') != "":
             if self.request.get('hidden') == "1":
               newhidden = True
