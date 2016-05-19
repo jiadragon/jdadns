@@ -77,7 +77,13 @@ class MainPage(webapp2.RequestHandler):
                  self.response.out.write(result.name+',')
               self.response.out.write('END')  # Cap the list             
  
-     else: self.response.out.write('Error')
+     else: 
+          self.response.out.write('?type=')
+          self.response.out.write('add')
+          self.response.out.write('remove')
+          self.response.out.write('update')
+          self.response.out.write('retrieve')
+          self.response.out.write('list')
 
 class Redirector(webapp2.RequestHandler):
   def get(self):
