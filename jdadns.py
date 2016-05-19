@@ -103,10 +103,10 @@ class Main_DNS(webapp2.RequestHandler):
         # record already exists, update it                    
         newwpass = record.writepass
         newrpass = record.readpass
-          newhidden = record.hidden
+        newhidden = record.hidden
 
-          if param3 == "":
-            param3 = record.url            
+        if param3 == "":
+          param3 = record.url            
           if self.request.get('wpass') != "":
             if self.request.get('wpass') == "null":
               newwpass = ""
