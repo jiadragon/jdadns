@@ -106,6 +106,7 @@ class Redirector(webapp2.RequestHandler):
             self.redirect(urllib.unquote(record.url)+'/?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
         else:        
             self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL    
+            self.redirect(urllib.unquote(record.url)) # redirect to the HTTP-IN URL    
  
 app = webapp2.WSGIApplication( [('/', Main_DNS),
                                 ('/.*',Redirector)], 
