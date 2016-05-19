@@ -50,7 +50,7 @@ class Main_DNS(webapp2.RequestHandler):
             self.response.out.write('Added')
         else:
           logging.info('Service: '+param2+' already found.')
-                    self.response.out.write('Found')  # service already exists so announce that and do nothing
+                  self.response.out.write('Found')  # service already exists so announce that and do nothing
       else:
         self.response.set_status(401)
         logging.info('Rejected Service: '+param2+' Invalid admin password')
