@@ -34,7 +34,7 @@ class Main_DNS(webapp2.RequestHandler):
       param6=self.request.get('hidden') # enables hiding the entry from listing
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
-        newrec = Service.get_by_key_name(param2)
+        newrec = Service.get_by_key_name(param2) 
  
   def post(self):
    self.get()
