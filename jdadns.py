@@ -12,96 +12,96 @@ class Service(db.Model):
  
 class Main_DNS(webapp2.RequestHandler):
  
-    def get(self):
+	def get(self):
  
-        self.response.out.write('None') # Service wasn't found
-        obj_name=self.request.headers.get('X-SecondLife-Object-Name')
-        region=self.request.headers.get('X-SecondLife-Region')
-        local_pos=self.request.headers.get('X-SecondLife-Local-Position')
-        owner_name=self.request.headers.get('X-SecondLife-Owner-Name')
-        owner_key=self.request.headers.get('X-SecondLife-Owner-Key')
-        logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
-        logging.info('POST Body was: '+self.request.body)
+  	self.response.out.write('None') # Service wasn't found
+    obj_name=self.request.headers.get('X-SecondLife-Object-Name')
+    region=self.request.headers.get('X-SecondLife-Region')
+    local_pos=self.request.headers.get('X-SecondLife-Local-Position')
+  	owner_name=self.request.headers.get('X-SecondLife-Owner-Name')
+    owner_key=self.request.headers.get('X-SecondLife-Owner-Key')
+    logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
+    logging.info('POST Body was: '+self.request.body)
  
-        admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
-        # Putting "null" in password disables this feature.
+    admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
+    # Putting "null" in password disables this feature.
  
-        if self.request.get('type')=='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
-            param2=self.request.get('name')   # the Name the service will be known by
-            param3=self.request.get('url')    # the URL for the web service
-            param4=self.request.get('wpass')  # the password for modifying the entry
-            param5=self.request.get('rpass')  # the password for reading the entry
-            param6=self.request.get('hidden') # enables hiding the entry from listing
+    if self.request.get('type')=='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
+      param2=self.request.get('name')   # the Name the service will be known by
+      param3=self.request.get('url')    # the URL for the web service
+      param4=self.request.get('wpass')  # the password for modifying the entry
+      param5=self.request.get('rpass')  # the password for reading the entry
+      param6=self.request.get('hidden') # enables hiding the entry from listing
  
-            if admin_password != 'null' and admin_password == self.request.get('admin'):
+      if admin_password != 'null' and admin_password == self.request.get('admin'):
  
-                newrec = Service.get_by_key_name(param2)
+        newrec = Service.get_by_key_name(param2)
  
-                if newrec is None:  # the service doesn't exist, so add it.
-                    if param2=="" or param3=="" :
-                        self.response.out.write('Error2')
-                    else:
-                        if param6 == "1":
-                            param6 = True
-                        else:
-                            param6 = False
- 
-                        newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param5,hidden=param6)
-                        newrec.put()
-                        logging.info('Added Service: '+param2)
-                        self.response.out.write('Added')
-                else:
-                    logging.info('Service: '+param2+' already found.')
-                    self.response.out.write('Found')  # service already exists so announce that and do nothing
+        if newrec is None:  # the service doesn't exist, so add it.
+          if param2=="" or param3=="" :
+            self.response.out.write('Error2')
+          else:
+            if param6 == "1":
+              param6 = True
             else:
-                self.response.set_status(401)
-                logging.info('Rejected Service: '+param2+' Invalid admin password')
-                self.response.out.write('Rejected')
+              param6 = False
  
-        elif self.request.get('type')=='remove': #removing a service
-            param2=self.request.get('name')     # the name the service is known by
+          newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param5,hidden=param6)
+          newrec.put()
+          logging.info('Added Service: '+param2)
+          self.response.out.write('Added')
+        else:
+          logging.info('Service: '+param2+' already found.')
+          self.response.out.write('Found')  # service already exists so announce that and do nothing
+      else:
+        self.response.set_status(401)
+        logging.info('Rejected Service: '+param2+' Invalid admin password')
+        self.response.out.write('Rejected')
  
-            record = Service.get_by_key_name(param2)
+  elif self.request.get('type')=='remove': #removing a service
+  	param2=self.request.get('name')     # the name the service is known by
  
-            if record is None:
-                self.response.set_status(200)
-                self.response.out.write('None') # Service wasn't found
-            elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
-                record.delete()  # remove
-                logging.info('Removed Service: '+param2)
-                self.response.out.write('Removed')
-            else:
-                self.response.set_status(401)
-                logging.info('Rejected Service: '+param2+' remove. Not Found')
-                self.response.out.write('Rejected')
+    record = Service.get_by_key_name(param2)
  
-        elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
-            param2=self.request.get('name') #the Name the service will be known by         
-            param3=self.request.get('url') # the URL for the web service
-            param4=self.request.get('pass') # the password for modifying the entry
+    if record is None:
+      self.response.set_status(200)
+      self.response.out.write('None') # Service wasn't found
+    elif record.writepass == "" or record.writepass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
+      record.delete()  # remove
+      logging.info('Removed Service: '+param2)
+      self.response.out.write('Removed')
+    else:
+      self.response.set_status(401)
+      logging.info('Rejected Service: '+param2+' remove. Not Found')
+      self.response.out.write('Rejected')
  
-            if param2=="" :
-                logging.info('Could not Update Blank Service')
-                self.response.out.write('Error2')
-                return
+  elif self.request.get('type')=='update':  # update an existing service. Note this creates a new service, or updates an existing one
+    param2=self.request.get('name') #the Name the service will be known by         
+    param3=self.request.get('url') # the URL for the web service
+    param4=self.request.get('pass') # the password for modifying the entry
  
-            record = Service.get_by_key_name(param2)
+    if param2=="" :
+    logging.info('Could not Update Blank Service')
+    self.response.out.write('Error2')
+    return
  
-            if record is None:
-                if param3 == "":
-                    logging.info('Updating Service: '+param2+' failed. Blank URL')
-                    self.response.out.write('Error3')
-                else:
-                    newhidden = False
-                    if self.request.get('hidden') == '1':
-                        newhidden = True
-                    newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
-                    if self.request.get('wpass') != "":
-                        newrec.writepass=self.request.get('wpass')
-                    if self.request.get('rpass') != "":
-                        newrec.readpass=self.request.get('rpass')
-                    newrec.put()
-                    logging.info('Added Service: '+param2+' (update add)')
+    record = Service.get_by_key_name(param2)
+ 
+    if record is None:
+    if param3 == "":
+    logging.info('Updating Service: '+param2+' failed. Blank URL')
+    self.response.out.write('Error3')
+  else:
+    newhidden = False
+    if self.request.get('hidden') == '1':
+      newhidden = True
+      newrec=Service(key_name=param2,name=param2,url=param3,writepass=param4,readpass=param4, hidden=newhidden)
+      if self.request.get('wpass') != "":
+        newrec.writepass=self.request.get('wpass')
+        if self.request.get('rpass') != "":
+          newrec.readpass=self.request.get('rpass')
+          newrec.put()
+          logging.info('Added Service: '+param2+' (update add)')
                     self.response.out.write('Added')
             elif record.writepass == "" or record.writepass == param4 or (admin_password != 'null' and admin_password == self.request.get('admin')):
  
