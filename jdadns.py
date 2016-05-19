@@ -110,7 +110,7 @@ class Main_DNS(webapp2.RequestHandler):
           if self.request.get('wpass') != "":
             if self.request.get('wpass') == "null":
               newwpass = ""
-                    else:
+            else:
                         newwpass = self.request.get('wpass')
                 if self.request.get('rpass') != "":
                     if self.request.get('rpass') == "null":
