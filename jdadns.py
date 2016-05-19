@@ -35,6 +35,20 @@ class Main_DNS(webapp2.RequestHandler):
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
+    elif self.request.get('type')=='list': # List the existing services
+      records = Service.all()
+      if records is None:
+        logging.info('Service List: Empty')
+        self.response.out.write('Empty') # Services weren't found
+      else:
+        got_admin = False
+        if admin_password != 'null' and admin_password == self.request.get('admin'):
+        got_admin = True;            
+        for result in records: 
+          if result.hidden == False or got_admin == True:
+            self.response.out.write(result.name+',')
+        logging.info('Service List: Success')
+        self.response.out.write('END')  # Cap the list             
  
   def post(self):
    self.get()
