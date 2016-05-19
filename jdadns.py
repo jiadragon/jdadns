@@ -94,9 +94,9 @@ class Main_DNS(webapp2.RequestHandler):
             newrec.writepass=self.request.get('wpass')
           if self.request.get('rpass') != "":
             newrec.readpass=self.request.get('rpass')
-            newrec.put()
-            logging.info('Added Service: '+param2+' (update add)')
-            self.response.out.write('Added')
+          newrec.put()
+          logging.info('Added Service: '+param2+' (update add)')
+          self.response.out.write('Added')
           
       self.response.out.write('Update')
       
