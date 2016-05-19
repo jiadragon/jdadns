@@ -78,6 +78,7 @@ class MainPage(webapp2.RequestHandler):
               self.response.out.write('END')  # Cap the list             
  
      else: 
+          self.response.out.write('retrieve')
           self.response.out.write('add')
           self.response.out.write('remove')
           self.response.out.write('update')
