@@ -217,4 +217,3 @@ class Redirector(webapp2.RequestHandler):
 app = webapp2.WSGIApplication( [('/', Main_DNS),
                                 ('/.*',Redirector)], 
                                  debug=True)
-                                 
