@@ -112,7 +112,7 @@ class Main_DNS(webapp2.RequestHandler):
  
           if param3 == "":
             param3 = record.url            
-                if self.request.get('wpass') != "":
+          if self.request.get('wpass') != "":
                     if self.request.get('wpass') == "null":
                         newwpass = ""
                     else:
