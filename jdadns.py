@@ -97,7 +97,7 @@ class Main_DNS(webapp2.RequestHandler):
           if self.request.get('rpass') != "":
             newrec.readpass=self.request.get('rpass')
           newrec.put()
-          logging.info('Added Service: '+param2+' (update add)')
+          #logging.info('Added Service: '+param2+' (update add)')
           self.response.out.write('Added')
       elif record.writepass == "" or record.writepass == param4 or (admin_password != 'null' and admin_password == self.request.get('admin')):
         # record already exists, update it                    
