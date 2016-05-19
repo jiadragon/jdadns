@@ -15,28 +15,28 @@ class Main_DNS(webapp2.RequestHandler):
   def get(self):
  
     self.response.out.write('Test')
-    obj_name=self.request.headers.get('X-SecondLife-Object-Name')
-    region=self.request.headers.get('X-SecondLife-Region')
-    local_pos=self.request.headers.get('X-SecondLife-Local-Position')
-    owner_name=self.request.headers.get('X-SecondLife-Owner-Name')
-    owner_key=self.request.headers.get('X-SecondLife-Owner-Key')
+    obj_name = self.request.headers.get('X-SecondLife-Object-Name')
+    region = self.request.headers.get('X-SecondLife-Region')
+    local_pos = self.request.headers.get('X-SecondLife-Local-Position')
+    owner_name = self.request.headers.get('X-SecondLife-Owner-Name')
+    owner_key = self.request.headers.get('X-SecondLife-Owner-Key')
 		#logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
 		#logging.info('POST Body was: '+self.request.body)
 
     admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
     # Putting "null" in password disables this feature.
  
-    if self.request.get('type')=='add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
-      param2=self.request.get('name')   # the Name the service will be known by
-      param3=self.request.get('url')    # the URL for the web service
-      param4=self.request.get('wpass')  # the password for modifying the entry
-      param5=self.request.get('rpass')  # the password for reading the entry
-      param6=self.request.get('hidden') # enables hiding the entry from listing
+    if self.request.get('type') == 'add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
+      param2 = self.request.get('name')   # the Name the service will be known by
+      param3 = self.request.get('url')    # the URL for the web service
+      param4 = self.request.get('wpass')  # the password for modifying the entry
+      param5 = self.request.get('rpass')  # the password for reading the entry
+      param6 = self.request.get('hidden') # enables hiding the entry from listing
  
       if admin_password != 'null' and admin_password == self.request.get('admin'):
         newrec = Service.get_by_key_name(param2)
         if newrec is None:  # the service doesn't exist, so add it.
-          if param2=="" or param3=="" :
+          if param2 == "" or param3 == "" :
             self.response.out.write('Error2')
           else:
             if param6 == "1":
@@ -71,24 +71,24 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Rejected Service: '+param2+' remove. Not Found')
         self.response.out.write('Rejected')
 
-    elif self.request.get('type')=='update': #removing a service
+    elif self.request.get('type') == 'update': #removing a service
       param2 = self.request.get('name')     # the name the service is known by
       param3 = self.request.get('url')     # the URL for the web service
       param4 = self.request.get('pass')     # the password for modifying the entry
-      if param2 == "":
+      if param2 == '':
         logging.info('Could not Update Blank Service')
         self.response.out.write('Error2')
         return
       self.response.out.write('Update')
       
-    elif self.request.get('type')=='retrieve': # get the current URL for a given service
-      param2=self.request.get('name')     # the name the service is known by
+    elif self.request.get('type') == 'retrieve': # get the current URL for a given service
+      param2 = self.request.get('name')     # the name the service is known by
       record = Service.get_by_key_name(param2)
       if record is None:
         self.response.set_status(200)
         logging.info('Retrieve Service: '+param2+' failed. Not Found.')
         self.response.out.write('None') # Service wasn't found
-      elif record.readpass == "" or record.readpass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
+      elif record.readpass == '' or record.readpass == self.request.get('pass') or (admin_password != 'null' and admin_password == self.request.get('admin')):
         logging.info('Retrieved Service: '+param2)
         self.response.out.write(record.url) #print the URL
       else:
@@ -96,7 +96,7 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Retrieve Service: '+param2+' failed. Invalid Password.')
         self.response.out.write("Rejected")
       
-    elif self.request.get('type')=='list': # List the existing services
+    elif self.request.get('type') == 'list': # List the existing services
       records = Service.all()
       if records is None:
         #logging.info('Service List: Empty')
@@ -118,16 +118,16 @@ class Redirector(webapp2.RequestHandler):
   def get(self):
  
     import urllib
+  
+    service_name = self.request.path
  
-    service_name=self.request.path
- 
-    if service_name[-1]=='/' :
+    if service_name[-1] == '/' :
       service_name=service_name[1:-1] #remove leading and trailing slash
     else:
       service_name=service_name[1:]  # remove leading slash only
  
     #un-escape just in case you're Kinki :p
-    service_name=urllib.unquote(service_name)
+    service_name = urllib.unquote(service_name)
     logging.debug('Looking up '+service_name+' (DNS)');
  
     record = Service.get_by_key_name(str(service_name))
