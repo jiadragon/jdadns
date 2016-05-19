@@ -16,7 +16,7 @@ class Main_DNS(webapp2.RequestHandler):
  
     self.response.out.write('None') # Service wasn't found
 
-    def post(self):
+  def post(self):
         self.get()
  
 class Redirector(webapp2.RequestHandler):
