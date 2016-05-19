@@ -39,7 +39,7 @@ class Main_DNS(webapp2.RequestHandler):
     elif self.request.get('type')=='list': # List the existing services
       records = Service.all()
       if records is None:
-        logging.info('Service List: Empty')
+        #logging.info('Service List: Empty')
         self.response.out.write('Empty') # Services weren't found
       else:
         got_admin = False
