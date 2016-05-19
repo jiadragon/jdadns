@@ -140,7 +140,7 @@ class Main_DNS(webapp2.RequestHandler):
       else:
           self.response.set_status(401)
           logging.info('Update Service: '+param2+' failed. Invalid Password.')
-                self.response.out.write('Rejected')
+          self.response.out.write('Rejected')
  
         elif self.request.get('type')=='retrieve': # get the current URL for a given service
             param2=self.request.get('name')     # the name the service is known by
