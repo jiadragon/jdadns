@@ -103,7 +103,7 @@ class Redirector(webapp2.RequestHandler):
     else:
         logging.info('Redirect Success') 
         if self.request.query_string != '' :
-            self.redirect(urllib.unquote(record.url)+'/?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
+            self.redirect(urllib.unquote(strecord.url)+'/?'+self.request.query_string) # redirect to the HTTP-IN URL with arugments
         else:        
             #self.redirect(urllib.unquote("http://google.com")) # redirect to the HTTP-IN URL    
             self.redirect(urllib.unquote(str(record.url))) # redirect to the HTTP-IN URL    
