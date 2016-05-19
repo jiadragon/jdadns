@@ -129,8 +129,8 @@ class Main_DNS(webapp2.RequestHandler):
         record.readpass=newrpass
         record.hidden=newhidden
  
-          record.put()
-        	logging.info('Updated Service: '+param2)
+        record.put()
+        logging.info('Updated Service: '+param2)
           self.response.out.write('Updated')
       else:
         self.response.set_status(401)
