@@ -82,8 +82,8 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Retrieved Service: '+param2)
         self.response.out.write(record.url) #print the URL
       else:
-            self.response.set_status(401)
-                logging.info('Retrieve Service: '+param2+' failed. Invalid Password.')
+        self.response.set_status(401)
+        logging.info('Retrieve Service: '+param2+' failed. Invalid Password.')
                 self.response.out.write("Rejected")
  
       
