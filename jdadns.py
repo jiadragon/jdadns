@@ -68,7 +68,7 @@ class Main_DNS(webapp2.RequestHandler):
         record.delete()  # remove
         logging.info('Removed Service: '+param2)
       self.response.out.write('Removed')
-            else:
+          else:
                 self.response.set_status(401)
                 logging.info('Rejected Service: '+param2+' remove. Not Found')
                 self.response.out.write('Rejected')
