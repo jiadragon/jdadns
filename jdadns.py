@@ -81,8 +81,8 @@ class Main_DNS(webapp2.RequestHandler):
         return
       self.response.out.write('Update')
       
-    elif self.request.get('type') =='retrieve': # get the current URL for a given service
-      param2=self.request.get('name')     # the name the service is known by
+    elif self.request.get('type') == 'retrieve': # get the current URL for a given service
+      param2 = self.request.get('name')     # the name the service is known by
       record = Service.get_by_key_name(param2)
       if record is None:
         self.response.set_status(200)
