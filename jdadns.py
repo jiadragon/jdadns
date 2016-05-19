@@ -57,7 +57,7 @@ class Main_DNS(webapp2.RequestHandler):
         self.response.out.write('Rejected')
  
     elif self.request.get('type')=='remove': #removing a service
-            param2=self.request.get('name')     # the name the service is known by
+        param2=self.request.get('name')     # the name the service is known by
  
             record = Service.get_by_key_name(param2)
  
