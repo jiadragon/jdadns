@@ -118,6 +118,15 @@ class Main_DNS(webapp2.RequestHandler):
             newhidden = True
           elif self.request.get('hidden') == '0':
             newhidden = False
+                # add record, either replacing the deleted one, or adding a new one if it never existed
+                record.url=param3
+                record.writepass=newwpass
+                record.readpass=newrpass
+                record.hidden=newhidden
+ 
+                record.put()
+                logging.info('Updated Service: '+param2)
+                self.response.out.write('Updated')
 
             
       self.response.out.write('Update')
