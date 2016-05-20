@@ -120,7 +120,7 @@ class Main_DNS(webapp2.RequestHandler):
             newhidden = False
 
        	# add record, either replacing the deleted one, or adding a new one if it never existed
-                record.url=param3
+        record.url=param3
                 record.writepass=newwpass
                 record.readpass=newrpass
                 record.hidden=newhidden
