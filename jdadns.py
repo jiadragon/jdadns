@@ -126,7 +126,7 @@ class Main_DNS(webapp2.RequestHandler):
         record.hidden = newhidden
  
         record.put()
-                logging.info('Updated Service: '+param2)
+        logging.info('Updated Service: '+param2)
                 self.response.out.write('Updated')
 
             
