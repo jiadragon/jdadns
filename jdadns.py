@@ -129,6 +129,7 @@ class Main_DNS(webapp2.RequestHandler):
         logging.info('Updated Service: '+param2)
         self.response.out.write('Updated')
     	else:
+        pass
         #self.response.set_status(401)
         #logging.info('Update Service: '+param2+' failed. Invalid Password.')
         #self.response.out.write('Rejected')
