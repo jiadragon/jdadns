@@ -13,19 +13,21 @@ class Main_DNS(webapp2.RequestHandler):
  
   def get(self):
  
-    self.response.out.write('Test')
     obj_name = self.request.headers.get('X-SecondLife-Object-Name')
     region = self.request.headers.get('X-SecondLife-Region')
     local_pos = self.request.headers.get('X-SecondLife-Local-Position')
     owner_name = self.request.headers.get('X-SecondLife-Owner-Name')
     owner_key = self.request.headers.get('X-SecondLife-Owner-Key')
-    logging.info('DNS called from '+obj_name+' owned by '+owner_name+' ('+owner_key+') from Region:'+region+' Pos:'+local_pos)
+    logging.info('DNS called from '+str(obj_name)+' owned by '+str(owner_name)+' ('+str(owner_key)+') from Region:'+str(region)+' Pos:'+str(local_pos))
     logging.info('POST Body was: '+self.request.body)
 
-    admin_password = "adminpassword"        # This password enables you to have unrestricted access to the DNS
+    admin_password = 'adminpassword'        # This password enables you to have unrestricted access to the DNS
     # Putting "null" in password disables this feature.
- 
-    if self.request.get('type') == 'add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
+
+    if self.request.get('type') == '':    # No type command
+      self.response.out.write('OK')
+    
+    elif self.request.get('type') == 'add':    # Adding a new service to the DNS (You can also use Update but it won't tell you the service already exists)
       param2 = self.request.get('name')   # the Name the service will be known by
       param3 = self.request.get('url')    # the URL for the web service
       param4 = self.request.get('wpass')  # the password for modifying the entry
@@ -151,7 +153,7 @@ class Main_DNS(webapp2.RequestHandler):
     elif self.request.get('type') == 'list': # List the existing services
       records = Service.all()
       if records is None:
-        #logging.info('Service List: Empty')
+        logging.info('Service List: Empty')
         self.response.out.write('Empty') # Services weren't found
       else:
         got_admin = False
@@ -196,7 +198,6 @@ class Redirector(webapp2.RequestHandler):
         if self.request.query_string != '' :
             self.redirect(urllib.unquote(str(record.url))+'/?'+str(self.request.query_string)) # redirect to the HTTP-IN URL with arugments
         else:        
-            #self.redirect(urllib.unquote("http://google.com")) # redirect to the HTTP-IN URL    
             self.redirect(urllib.unquote(str(record.url))) # redirect to the HTTP-IN URL    
  
 app = webapp2.WSGIApplication( [('/', Main_DNS),
