@@ -119,9 +119,16 @@ class Main_DNS(webapp2.RequestHandler):
           elif self.request.get('hidden') == '0':
             newhidden = False
 
-            
-      self.response.out.write('Update')
-      
+       	# add record, either replacing the deleted one, or adding a new one if it never existed
+        record.url = param3
+        record.writepass = newwpass
+        record.readpass = newrpass
+        record.hidden = newhidden
+ 
+        record.put()
+        logging.info('Updated Service: '+param2)
+        self.response.out.write('Updated')
+
     elif self.request.get('type') == 'retrieve': # get the current URL for a given service
       param2 = self.request.get('name')     # the name the service is known by
       record = Service.get_by_key_name(param2)
