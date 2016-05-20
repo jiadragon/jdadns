@@ -127,7 +127,7 @@ class Main_DNS(webapp2.RequestHandler):
  
         record.put()
         logging.info('Updated Service: '+param2)
-                self.response.out.write('Updated')
+        self.response.out.write('Updated')
 
             
       self.response.out.write('Update')
